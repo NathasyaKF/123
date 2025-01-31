@@ -53,7 +53,7 @@ def search_logs_and_summarize():
             "bool": {
                 "must": [
                     {"range": {"@timestamp": {"gte": "now-4d/d", "lt": "now/d"}}},
-                    {"match": {"log_level": "WARNING"}}
+                    {"match": {"level": "WARNING"}}
                 ]
             }
         }
@@ -61,7 +61,7 @@ def search_logs_and_summarize():
     
     try:
         results = scan(client=es, index="log-ocp-snap-service", query=query)
-        logs = [clean_message(hit.get("_source", {}).get("_message", "")) for hit in results if clean_message(hit.get("_source", {}).get("_message", ""))]
+        logs = [clean_message(hit.get("_source", {}).get("_message", "")) for hit in results if clean_message(hit.get("_source", {}).get("message", ""))]
         if not logs:
             return jsonify({"summary": "No logs found for the given query."})
         summary = summarize_logs(logs)
