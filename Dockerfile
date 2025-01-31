@@ -53,3 +53,5 @@ sudo ln -s /etc/nginx/sites-available/log_summary_app /etc/nginx/sites-enabled/
 sudo systemctl restart nginx
 
 sudo systemctl status nginx
+
+https://docs.google.com/document/d/1bEQnH8oYdmz_LR0CiBAy1ihawy_IEyCgvuUurPfhFhs/edit?usp=sharing
